@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.templeblock.HomeViewModel" />
+        <variable
+            name="st"
+            type="com.example.templeblock.SoundType" />
+    </data>
+
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
@@ -33,8 +43,9 @@
             style="@style/Theme.TempleBlock.Dropdown"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:checked="@{viewModel.currentSound == st.SOUND1.id}"
+            android:onClick="@{viewModel.onRadioButtonClicked}"
             android:layout_margin="8dp"
-            android:checked="true"
             android:text="@string/sound1" />
 
         <RadioButton
@@ -42,6 +53,8 @@
             style="@style/Theme.TempleBlock.Dropdown"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:checked="@{viewModel.currentSound == st.SOUND2.id}"
+            android:onClick="@{viewModel.onRadioButtonClicked}"
             android:layout_margin="8dp"
             android:text="@string/sound2" />
 
@@ -51,16 +64,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
+            android:checked="@{viewModel.currentSound == st.SOUND3.id}"
+            android:onClick="@{viewModel.onRadioButtonClicked}"
             android:text="@string/sound3" />
 
-        <RadioButton
-            android:id="@+id/sound4"
-            style="@style/Theme.TempleBlock.Dropdown"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:text="@string/sound4" />
+<!--        <RadioButton-->
+<!--            android:id="@+id/sound4"-->
+<!--            style="@style/Theme.TempleBlock.Dropdown"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="8dp"-->
+<!--            android:checked="@{viewModel.currentSound == st.SOUND4.id}"-->
+<!--            android:onClick="@{viewModel.onRadioButtonClicked}"-->
+<!--            android:text="@string/sound4" />-->
 
     </RadioGroup>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

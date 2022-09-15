@@ -1,19 +1,14 @@
 package com.example.templeblock
 
 import android.annotation.SuppressLint
-import android.graphics.Rect
-import android.graphics.drawable.ColorDrawable
-import android.media.AudioAttributes
 import android.media.SoundPool
 import android.os.Bundle
-import android.os.Handler
-import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
-import android.widget.Button
 import android.widget.PopupWindow
-import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.fragment.app.viewModels
 import com.example.templeblock.databinding.FragmentHomeBinding
+import com.example.templeblock.databinding.PopupWindowBinding
 
 class HomeFragment : Fragment() {
 
@@ -21,6 +16,7 @@ class HomeFragment : Fragment() {
     private lateinit var soundpool: SoundPool
     private var sound: Int = -1
     private lateinit var popupWindow: PopupWindow
+    private val viewModel : HomeViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,6 +32,10 @@ class HomeFragment : Fragment() {
     @SuppressLint("ClickableViewAccessibility")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        viewModel.currentSound.observe(viewLifecycleOwner) {
+            initSound(it)
+        }
 
         binding.soundSelect.setOnClickListener {
             selectSound(it)
@@ -68,11 +68,13 @@ class HomeFragment : Fragment() {
         binding.blockImg.visibility = View.VISIBLE
     }
 
-    private fun initSound() {
+    private fun initSound(soundId: Int? = R.raw.sound1) {
         soundpool = SoundPool.Builder()
             .setMaxStreams(30)
             .build()
-        sound = soundpool.load(requireContext(), R.raw.sound1, 1)
+        soundId?.let {
+            sound = soundpool.load(requireContext(), it, 1)
+        }
     }
 
     private fun playSound() {
@@ -80,12 +82,13 @@ class HomeFragment : Fragment() {
     }
 
     private fun selectSound(v: View) {
-        val popupView = LayoutInflater.from(requireContext()).inflate(R.layout.popup_window, null)
-        popupWindow = PopupWindow(popupView).apply {
+        val binding = PopupWindowBinding.inflate(LayoutInflater.from(requireContext()),null, false)
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
+        popupWindow = PopupWindow(binding.root).apply {
             width = ViewGroup.LayoutParams.WRAP_CONTENT
             height = ViewGroup.LayoutParams.WRAP_CONTENT
             showAsDropDown(v)
-//            setBackgroundDrawable(ColorDrawable(0x00000000))
             isTouchable = true
             contentView.setOnClickListener {
                 dismiss()
