@@ -1,4 +1,4 @@
-package com.example.templeblock
+package com.yuyu.templeblock
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

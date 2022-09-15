@@ -1,4 +1,4 @@
-package com.example.templeblock
+package com.yuyu.templeblock
 
 import org.junit.Test
 

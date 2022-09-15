@@ -1,4 +1,4 @@
-package com.example.templeblock
+package com.yuyu.templeblock
 
 import android.annotation.SuppressLint
 import android.content.SharedPreferences
@@ -12,8 +12,8 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.PopupWindow
 import androidx.fragment.app.viewModels
-import com.example.templeblock.databinding.FragmentHomeBinding
-import com.example.templeblock.databinding.PopupWindowBinding
+import com.yuyu.templeblock.databinding.FragmentHomeBinding
+import com.yuyu.templeblock.databinding.PopupWindowBinding
 
 class HomeFragment : Fragment() {
 

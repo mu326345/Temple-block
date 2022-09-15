@@ -3,10 +3,10 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.templeblock.HomeViewModel" />
+            type="com.yuyu.templeblock.HomeViewModel" />
         <variable
             name="st"
-            type="com.example.templeblock.SoundType" />
+            type="com.yuyu.templeblock.SoundType" />
     </data>
 
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"

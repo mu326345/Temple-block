@@ -1,4 +1,4 @@
-package com.example.templeblock
+package com.yuyu.templeblock
 
 import android.view.View
 import android.widget.RadioButton

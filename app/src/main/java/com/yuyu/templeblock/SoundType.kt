@@ -1,4 +1,4 @@
-package com.example.templeblock
+package com.yuyu.templeblock
 
 enum class SoundType(val rawId: Int, val viewId: Int, val index: Int) {
     SOUND1(R.raw.sound1, R.id.sound1, 1),
