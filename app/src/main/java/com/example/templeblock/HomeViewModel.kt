@@ -7,8 +7,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class HomeViewModel : ViewModel() {
-    private val _currentSound = MutableLiveData(SoundType.SOUND1.id)
-    val currentSound : LiveData<Int>
+    private val _currentSound = MutableLiveData(SoundType.SOUND1)
+    val currentSound : LiveData<SoundType>
     get() = _currentSound
 
     fun onRadioButtonClicked(view: View) {
@@ -18,17 +18,17 @@ class HomeViewModel : ViewModel() {
             when(view.id) {
                 SoundType.SOUND1.viewId -> {
                     if(checked) {
-                        _currentSound.value = SoundType.SOUND1.id
+                        _currentSound.value = SoundType.SOUND1
                     }
                 }
                 SoundType.SOUND2.viewId -> {
                     if(checked) {
-                        _currentSound.value = SoundType.SOUND2.id
+                        _currentSound.value = SoundType.SOUND2
                     }
                 }
                 SoundType.SOUND3.viewId -> {
                     if(checked) {
-                        _currentSound.value = SoundType.SOUND3.id
+                        _currentSound.value = SoundType.SOUND3
                     }
                 }
 //                SoundType.SOUND4.viewId -> {
@@ -38,5 +38,9 @@ class HomeViewModel : ViewModel() {
 //                }
             }
         }
+    }
+
+    fun setId(type: SoundType) {
+        _currentSound.value = type
     }
 }

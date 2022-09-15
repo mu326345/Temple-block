@@ -2,9 +2,7 @@
     <string name="app_name">Temple block</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="sound_select">聲音選擇</string>
-    <string name="sound1">聲音1</string>
-    <string name="sound2">聲音2</string>
-    <string name="sound3">聲音3</string>
-    <string name="sound4">聲音4</string>
+    <string name="sound1">Sound A</string>
+    <string name="sound2">Sound B</string>
+    <string name="sound3">Sound C</string>
 </resources>
