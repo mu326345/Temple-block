@@ -7,7 +7,7 @@ android {
     compileSdk 31
 
     defaultConfig {
-        applicationId "com.example.templeblock"
+        applicationId "com.yuyu.templeblock"
         minSdk 25
         targetSdk 33
         versionCode 1
