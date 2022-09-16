@@ -24,8 +24,10 @@ class HomeFragment : Fragment() {
     private val viewModel: HomeViewModel by viewModels()
     private lateinit var handler: Handler
     private lateinit var mainHandler: Handler
+    private lateinit var handlerThread: HandlerThread
     private var loop: Boolean = false
     private var isInit: Boolean = false
+    private var isDestroy: Boolean = false
     private lateinit var pref: SharedPreferences
 
     override fun onCreateView(
@@ -34,7 +36,7 @@ class HomeFragment : Fragment() {
     ): View? {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
-        val handlerThread = HandlerThread("soundThread").apply {
+        handlerThread = HandlerThread("soundThread").apply {
             start()
         }
         handler = Handler(handlerThread.looper)
@@ -89,7 +91,7 @@ class HomeFragment : Fragment() {
                 initSound(type.rawId)
                 // after init sound, we start handler infinite loop
                 handler.post {
-                    while (true) {
+                    while (!isDestroy) {
                         if (loop) {
                             mainHandler.post {
                                 clickScaleDown()
@@ -126,6 +128,22 @@ class HomeFragment : Fragment() {
                 else -> false
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        loop = pref.getBoolean(PREF_LOOP, false)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        loop = false
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        isDestroy = true
+        handlerThread.quitSafely()
     }
 
     private fun clickScaleDown() {
