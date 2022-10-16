@@ -36,7 +36,7 @@ class HomeFragment : Fragment() {
     ): View? {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
-        handlerThread = HandlerThread("soundThread").apply {
+        handlerThread = HandlerThread(SOUNDTHREAD).apply {
             start()
         }
         handler = Handler(handlerThread.looper)
@@ -184,5 +184,6 @@ class HomeFragment : Fragment() {
     companion object {
         const val PREF_LOOP = "loop"
         const val PREF_SOUND = "sound"
+        const val SOUNDTHREAD = "soundThread"
     }
 }
